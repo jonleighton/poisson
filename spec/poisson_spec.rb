@@ -23,6 +23,10 @@ context "A poisson distribution with mean 4" do
     @poisson.probability { |x| x <= 0 }.should_be_close 0.0183, 0.0005
   end
   
+  specify "should have roughly 0.8046 probability of not being 4" do
+    @poisson.probability { |x| x.not_eql 4 }.should_be_close 0.8046, 0.0005
+  end
+  
 end
 
 context "A poisson distribution with mean 6" do
@@ -46,6 +50,10 @@ context "A poisson distribution with mean 6" do
   specify "should have roughly 0.0620 probability of being less than 3" do
     @poisson.probability { |x| x < 3 }.should_be_close 0.0620, 0.0005
   end
+  
+  specify "should have roughly 0.1487 probability of being greater than 0 and less than 4" do
+    @poisson.probability { |x| x == (1...4) }.should_be_close 0.1487, 0.0005
+  end
 
 end
 
@@ -61,6 +69,10 @@ context "A poisson distribution with mean 3.5" do
   
   specify "should have roughly 0.0653 probability of being greater than 6" do
     @poisson.probability { |x| x > 6 }.should_be_close 0.0653, 0.0005
+  end
+  
+  specify "should have roughly 0.7988 probability of being greater than or equal to 2 and less than or equal to 6" do
+    @poisson.probability { |x| x == (2..6) }.should_be_close 0.7988, 0.0005
   end
 
 end

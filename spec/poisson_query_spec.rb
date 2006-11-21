@@ -68,3 +68,16 @@ context "A poisson query of '< 5'" do
   end
   
 end
+
+context "A poisson query of 'not_eql 12'" do
+
+  setup do
+    @query = Poisson::Query.new
+    @query.not_eql 12
+  end
+  
+  specify "should have a condition of :not_eql" do
+    @query.condition.should_be :not_eql
+  end
+  
+end

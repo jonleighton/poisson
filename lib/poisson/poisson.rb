@@ -11,7 +11,19 @@ class Poisson
     
     case query.condition
       when :==
-        (Math.exp(-@mean) * mean**query.value) / Math.factorial(query.value)
+        if query.value.is_a? Range
+          probability do |x|
+            x <= if query.value.exclude_end?
+                   query.value.last - 1
+                 else
+                   query.value.last
+                 end
+          end - probability { |x| x < query.value.first }
+        else
+          (Math.exp(-@mean) * mean**query.value) / Math.factorial(query.value)
+        end
+      when :not_eql
+        1 - probability { |x| x == query.value }
       when :<=
         (0..query.value).inject(0) do |sum, value|
           sum += probability { |x| x == value }
