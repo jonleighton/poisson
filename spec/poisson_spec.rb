@@ -76,3 +76,11 @@ context "A poisson distribution with mean 3.5" do
   end
 
 end
+
+context "An attempt to create a poisson distribution with mean -6"end
+
+  specify "should raise Poisson::NegativeMean" do
+    proc { Poisson.new -6 }.should_raise Poisson::NegativeMean
+  end
+
+end
