@@ -1,8 +1,16 @@
 class Poisson
   
+  class InvalidMean < Exception; end;
+  
   attr_accessor :mean
   
   def initialize(mean)
+    if !mean.is_a?(Numeric)
+      raise InvalidMean, "the mean must be numeric"
+    elsif mean < 0
+      raise InvalidMean, "the mean must be positive"
+    end
+    
     @mean = mean
   end
   
