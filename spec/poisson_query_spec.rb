@@ -81,3 +81,51 @@ context "A poisson query of 'not_eql 12'" do
   end
   
 end
+
+context "A poisson query" do
+
+  setup do
+    @query = Poisson::Query.new
+  end
+
+  specify "should raise Poisson::Query::InvalidQuery when passed a negative number" do
+    proc { @query == -6 }.should_raise Poisson::Query::InvalidQuery
+  end
+  
+  specify "should raise Poisson::Query::InvalidQuery when passed a range starting with a negative number" do
+    proc { @query == (-6..4) }.should_raise Poisson::Query::InvalidQuery
+  end
+
+  specify "should raise Poisson::Query::InvalidQuery when passed a range that decreases" do
+    proc { @query == (6..2) }.should_raise Poisson::Query::InvalidQuery
+  end
+  
+  specify "should raise Poisson::Query::InvalidQuery when passed a range to a condition other than ==" do
+    proc { @query < (5..8) }.should_raise Poisson::Query::InvalidQuery
+  end
+  
+  specify "should not raise Poisson::Query::InvalidQuery when passed a range to a == condition" do
+    proc { @query == (5..8) }.should_not_raise Poisson::Query::InvalidQuery
+  end
+  
+  specify "should raise Poisson::Query::InvalidQuery when passed a non-integer-or-range" do
+    proc { @query < "Pushing through the walls of dark imagination" }.should_raise Poisson::Query::InvalidQuery
+  end
+  
+  specify "should not raise Poisson::Query::InvalidQuery when passed a range" do
+    proc { @query == (1..3) }.should_not_raise Poisson::Query::InvalidQuery
+  end
+  
+  specify "should raise Poisson::Query::InvalidQuery when passed a range containing non-integers" do
+    proc { @query == ("a".."t") }.should_raise Poisson::Query::InvalidQuery
+  end
+  
+  specify "should raise Poisson::Query::InvalidQuery when passed a range containing floats" do
+    proc { @query == (2.8..8.9) }.should_raise Poisson::Query::InvalidQuery
+  end
+  
+  specify "should raise Poisson::Query::InvalidQuery when passed a float" do
+    proc { @query == 9.2 }.should_raise Poisson::Query::InvalidQuery
+  end
+  
+end

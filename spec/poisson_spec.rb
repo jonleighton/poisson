@@ -79,7 +79,7 @@ end
 
 context "An attempt to create a poisson distribution with mean -6" do
 
-  specify "should raise Poisson::NegativeMean" do
+  specify "should raise Poisson::InvalidMean" do
     proc { Poisson.new -6 }.should_raise Poisson::InvalidMean
   end
 
@@ -87,7 +87,7 @@ end
 
 context "An attempt to create a poisson distribution with a non-numeric mean" do
 
-  specify "should raise Poisson::NegativeMean" do
+  specify "should raise Poisson::InvalidMean" do
     proc { Poisson.new "When I argue I see shapes" }.should_raise Poisson::InvalidMean
   end
 
