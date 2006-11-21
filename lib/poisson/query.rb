@@ -21,19 +21,32 @@ class Poisson::Query
   def validate_value(value, allow_range = false)
     error = nil
     
-    error = if !allow_range && value.is_a?(Range)
-              "range not allow for this operator"
-            elsif !(value.is_a?(Integer) || value.is_a?(Range))
-              "value must be integer or a range"
-            elsif value.is_a?(Range) && !value.first.is_a?(Integer)
-              "range values must be integers"
-            elsif value.is_a?(Range) && value.to_a.length <= 1
-              "range must include at least two values"
-            elsif (value.is_a?(Range) && value.first < 0) || (value.is_a?(Integer) && value < 0)
-              "query values must be positive"
-            elsif value.is_a?(Range) && value.first > value.last
-              "ranges cannot go down"
-            end
+    catch :error_set do
+    
+      if !(value.is_a?(Integer) || value.is_a?(Range))
+        error = "value must be integer or a range"
+        throw :error_set
+      end
+      
+      if value.is_a?(Range)
+        error = if !allow_range
+                  "range not allowed for this operator"
+                elsif !value.first.is_a?(Integer)
+                  "range values must be integers"
+                elsif value.to_a.length <= 1
+                  "range must include at least two values"
+                elsif value.first > value.last
+                  "ranges cannot go down"
+                end
+        throw :error_set if error
+      end
+      
+      if (value.is_a?(Range) && value.first < 0) || (value.is_a?(Integer) && value < 0)
+        error = "query values must be positive"
+        throw :error_set
+      end
+    
+    end
     
     raise InvalidQuery, error if error
   end
