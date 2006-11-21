@@ -74,6 +74,14 @@ context "A poisson distribution with mean 3.5" do
   specify "should have roughly 0.7988 probability of being greater than or equal to 2 and less than or equal to 6" do
     @poisson.probability { |x| x == (2..6) }.should_be_close 0.7988, 0.0005
   end
+  
+  specify "should have 0 probability of being less than 0" do
+    @poisson.probability { |x| x < 0 }.should == 0
+  end
+  
+  specify "should have roughly 0.0302 probability of being less than or equal to 0" do
+    @poisson.probability { |x| x <= 0 }.should_be_close 0.0302, 0.0005
+  end
 
 end
 

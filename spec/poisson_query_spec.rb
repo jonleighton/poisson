@@ -128,4 +128,8 @@ context "A poisson query" do
     proc { @query == 9.2 }.should_raise Poisson::Query::InvalidQuery
   end
   
+  specify "should raise Poisson::Query::InvalidQuery when passed a range with only one value" do
+    proc { @query == (4...5) }.should_raise Poisson::Query::InvalidQuery
+  end
+  
 end

@@ -39,7 +39,11 @@ class Poisson
       when :>=
         1 - probability { |x| x < query.value }
       when :<
-        probability { |x| x <= (query.value - 1) }
+        unless query.value == 0
+          probability { |x| x <= (query.value - 1) }
+        else
+          0
+        end
       when :>
         1 - probability { |x| x <= query.value }
     end
