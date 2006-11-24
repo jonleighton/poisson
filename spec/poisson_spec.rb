@@ -19,12 +19,28 @@ context "A poisson distribution with mean 4" do
     (@poisson + Poisson.new(2.5)).mean.should == 6.5
   end
   
+  specify "should return a poisson with mean 2 when a poisson of mean 2 is taken away" do
+    (@poisson - Poisson.new(2)).mean.should == 2
+  end
+  
+  specify "should return a poisson with mean 12 when multiplied by 3" do
+    (@poisson * 3).mean.should == 12
+  end
+  
+  specify "should return a poisson with mean 1 when divided by 4" do
+    (@poisson / 4).mean.should == 1
+  end
+  
   specify "should have roughly 0.0183 probability of being less than or equal to 0" do
     @poisson.probability { |x| x <= 0 }.should_be_close 0.0183, 0.0005
   end
   
   specify "should have roughly 0.8046 probability of not being 4" do
     @poisson.probability { |x| x.not_eql 4 }.should_be_close 0.8046, 0.0005
+  end
+  
+  specify "should have p as an alias for probability" do
+    @poisson.should_respond_to :p
   end
   
 end

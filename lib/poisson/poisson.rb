@@ -49,8 +49,22 @@ class Poisson
     end
   end
   
+  alias_method :p, :probability
+  
   def + poisson
     self.class.new(@mean + poisson.mean)
+  end
+  
+  def - poisson
+    self.class.new(@mean - poisson.mean)
+  end
+  
+  def * multiplier
+    self.class.new(@mean * multiplier)
+  end
+  
+  def / divider
+    self.class.new(@mean / divider)
   end
   
 end
