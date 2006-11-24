@@ -1,4 +1,4 @@
-module Math
+module Math #:nodoc:
   def self.factorial(n)
     if n == 0
       1

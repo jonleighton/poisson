@@ -1,0 +1,24 @@
+= Poisson Distribution Ruby Class
+
+Poisson is a Ruby class for the Poisson[http://en.wikipedia.org/wiki/Poisson_distribution] Distribution[http://en.wikipedia.org/wiki/Poisson_distribution].
+Here is a very simple use example:
+
+  require 'poisson'
+  poisson = Poisson.new(6)
+  poisson.probability { |x| x == 4 } # => 0.133...
+
+Please see the API documentation for more detail.
+
+= Install
+
+You know the routine:
+
+  gem install poisson
+
+= Author
+
+Poisson was written by Jonathan Leighton <turnip at turnipspatch dot com> of http://turnipspatch.com.
+
+= Licence
+
+Poisson is licensed under the GPL. See the LICENCE file. You can find the code in my repository: http://dev.turnipspatch.com.

@@ -19,10 +19,6 @@ context "A poisson distribution with mean 4" do
     (@poisson + Poisson.new(2.5)).mean.should == 6.5
   end
   
-  specify "should return a poisson with mean 2 when a poisson of mean 2 is taken away" do
-    (@poisson - Poisson.new(2)).mean.should == 2
-  end
-  
   specify "should return a poisson with mean 12 when multiplied by 3" do
     (@poisson * 3).mean.should == 12
   end
