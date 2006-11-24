@@ -33,10 +33,10 @@ class Poisson::Query
                   "range not allowed for this operator"
                 elsif !value.first.is_a?(Integer)
                   "range values must be integers"
-                elsif value.to_a.length <= 1
-                  "range must include at least two values"
                 elsif value.first > value.last
                   "ranges cannot go down"
+                elsif value.to_a.length <= 1
+                  "range must include at least two values"
                 end
         throw :error_set if error
       end

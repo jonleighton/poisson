@@ -7,3 +7,8 @@ Spec::Rake::SpecTask.new('spec') do |t|
 end
 
 task :default => :spec
+
+desc "Run rcov for code coverage"
+task :rcov do
+  sh 'rcov spec/*_spec.rb -x "spec/.*"'
+end
