@@ -17,8 +17,8 @@ You know the routine:
 
 = Author
 
-Poisson was written by Jonathan Leighton <turnip at turnipspatch dot com> of http://turnipspatch.com.
+Poisson was written by Jonathan Leighton <j at jonathanleighton dot com> of http://jonathanleighton.com/.
 
 = Licence
 
-Poisson is licensed under the GPL. See the LICENCE file. You can find the code in my repository: http://dev.turnipspatch.com.
+Poisson is licensed under the GPL. See the LICENCE file. You can find the code at http://github.com/jonleighton/poisson/.
