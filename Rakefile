@@ -21,7 +21,7 @@ Rake::RDocTask.new("doc") { |rdoc|
   rdoc.rdoc_dir = 'doc'
   rdoc.title    = "Poisson Library Documentation"
   rdoc.options << '--line-numbers' << '--inline-source'
-  %w(README.rdoc LICENCE CHANGELOG lib/**/*.rb).each { |f| rdoc.rdoc_files.include f }
+  %w(README LICENCE CHANGELOG lib/**/*.rb).each { |f| rdoc.rdoc_files.include f }
 }
 
 spec = Gem::Specification.new do |s|
@@ -31,10 +31,10 @@ spec = Gem::Specification.new do |s|
   s.email = "turnip@turnipspatch.com"
   s.homepage = "http://poisson.rubyforge.org/"
   s.summary = "A Ruby library for the Poisson distribution."
-  s.files = FileList["{lib,spec}/**/*", "LICENCE", "README.rdoc", "CHANGELOG"].to_a
+  s.files = FileList["{lib,spec}/**/*", "LICENCE", "README", "CHANGELOG"].to_a
   s.autorequire = "poisson"
   s.has_rdoc = true
-  s.extra_rdoc_files =  %w(README.rdoc LICENCE CHANGELOG)
+  s.extra_rdoc_files =  %w(README LICENCE CHANGELOG)
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
