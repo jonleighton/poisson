@@ -1,3 +1,7 @@
+= Status
+
+This is a little library I put together a while ago just for the hell of it. It won't be developed any further.
+
 = Poisson Distribution Ruby Class
 
 Poisson is a Ruby class for the Poisson[http://en.wikipedia.org/wiki/Poisson_distribution] Distribution[http://en.wikipedia.org/wiki/Poisson_distribution].
